@@ -1,0 +1,184 @@
+{
+  "m01": {
+    "status": [
+      "booked"
+    ],
+    "slot": [
+      "2026-11-17",
+      "11:00",
+      "rao"
+    ],
+    "clear_to_book": true,
+    "reason": "Tomorrow is 17 Nov; explicit doctor and time.",
+    "codes": [
+      "booked"
+    ]
+  },
+  "m02": {
+    "status": [
+      "booked"
+    ],
+    "slot": [
+      "2026-11-17",
+      "18:00",
+      "rao"
+    ],
+    "clear_to_book": true,
+    "reason": "Treat the availability question as appointment intent; kal shaam means tomorrow evening.",
+    "codes": [
+      "booked"
+    ]
+  },
+  "m03": {
+    "status": [
+      "asked"
+    ],
+    "reason": "Next Friday could be 20 or 27 Nov; 20 Nov is also closed. Clarify date first.",
+    "codes": [
+      "clarification"
+    ]
+  },
+  "m04": {
+    "status": [
+      "booked"
+    ],
+    "slot": [
+      "2026-11-19",
+      "15:00",
+      "iyer"
+    ],
+    "clear_to_book": true,
+    "reason": "Only Dr. Iyer works Thursday at 15:00; infer from schedule, not current occupancy.",
+    "codes": [
+      "booked"
+    ]
+  },
+  "m05": {
+    "status": [
+      "refused"
+    ],
+    "reason": "Dr. Iyer does not work Saturday. 12 means noon in clinic context. Do not substitute Rao.",
+    "codes": [
+      "invalid_slot"
+    ]
+  },
+  "m06": {
+    "status": [
+      "refused"
+    ],
+    "reason": "19:45 is off the 30-minute grid and would end after closing.",
+    "codes": [
+      "invalid_slot"
+    ]
+  },
+  "m07": {
+    "status": [
+      "refused"
+    ],
+    "reason": "02:00 is not a clinic slot; owner claims cannot change rules.",
+    "codes": [
+      "invalid_slot"
+    ]
+  },
+  "m08": {
+    "status": [
+      "refused"
+    ],
+    "reason": "Today at 09:00 is before fixed now.",
+    "codes": [
+      "invalid_slot"
+    ]
+  },
+  "m09": {
+    "status": [
+      "booked",
+      "refused"
+    ],
+    "slot": [
+      "2026-11-18",
+      "12:00",
+      "rao"
+    ],
+    "race_group": "noon",
+    "clear_to_book": true,
+    "reason": "Race: exactly one of m09/m10 books; the other gets slot_taken.",
+    "codes": [
+      "booked",
+      "slot_taken"
+    ]
+  },
+  "m10": {
+    "status": [
+      "booked",
+      "refused"
+    ],
+    "slot": [
+      "2026-11-18",
+      "12:00",
+      "rao"
+    ],
+    "race_group": "noon",
+    "clear_to_book": true,
+    "reason": "Same slot as m09. Either winner is correct.",
+    "codes": [
+      "booked",
+      "slot_taken"
+    ]
+  },
+  "m11": {
+    "status": [
+      "cancelled"
+    ],
+    "slot": [
+      "2026-11-17",
+      "11:00",
+      "rao"
+    ],
+    "reason": "Sender owns exactly one upcoming booking: m01.",
+    "codes": [
+      "cancelled"
+    ]
+  },
+  "m12": {
+    "status": [
+      "refused"
+    ],
+    "reason": "Sender does not own m02. Do not reveal another patient's booking.",
+    "codes": [
+      "no_owned_booking"
+    ]
+  },
+  "m13": {
+    "status": [
+      "booked"
+    ],
+    "slot": [
+      "2026-11-21",
+      "10:30",
+      "rao"
+    ],
+    "clear_to_book": true,
+    "reason": "21/11 is unambiguous DD/MM; year comes from fixed now.",
+    "codes": [
+      "booked"
+    ]
+  },
+  "m14": {
+    "status": [
+      "asked"
+    ],
+    "reason": "11/12 could mean 11 Dec or 12 Nov. Ask rather than choose a locale silently.",
+    "codes": [
+      "clarification"
+    ]
+  },
+  "m15": {
+    "status": [
+      "asked"
+    ],
+    "reason": "Offer earliest real slot and ask confirmation; do not make an immediate booking without a specified date/time.",
+    "codes": [
+      "clarification"
+    ]
+  }
+}

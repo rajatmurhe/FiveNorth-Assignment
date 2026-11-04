@@ -1,0 +1,336 @@
+[
+  {
+    "text": "Book day after tomorrow at 11am with Rao",
+    "expected_status": "booked",
+    "result": {
+      "status": "booked",
+      "code": "booked",
+      "reply": "Confirmed: Wed 18 Nov at 11:00 with Dr. Rao IST. Booking #1.",
+      "booking": {
+        "id": 1,
+        "phone": "+919800000001",
+        "doctor": "rao",
+        "date": "2026-11-18",
+        "time": "11:00"
+      },
+      "alternatives": [],
+      "message_id": "0",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-18",
+        "time": "11:00",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Book next week Wednesday 11am Rao",
+    "expected_status": "asked",
+    "result": {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "What exact date do you mean, including the four-digit year? Available options (IST): Wed 18 Nov at 11:00 with Dr. Rao; Wed 18 Nov at 11:30 with Dr. Rao; Wed 18 Nov at 10:30 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-18",
+          "time": "11:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-18",
+          "time": "11:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-18",
+          "time": "10:30",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "1",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-18",
+        "time": "11:00",
+        "doctor": "rao",
+        "clarification": "What exact date do you mean, including the four-digit year?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Book tomorrow 11am Dr Smith; Rao is unavailable",
+    "expected_status": "asked",
+    "result": {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "Would you like Dr. Rao or Dr. Iyer? Available options (IST): Tue 17 Nov at 11:00 with Dr. Iyer; Tue 17 Nov at 11:00 with Dr. Rao; Tue 17 Nov at 11:30 with Dr. Iyer. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-17",
+          "time": "11:00",
+          "doctor": "iyer"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "11:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "11:30",
+          "doctor": "iyer"
+        }
+      ],
+      "message_id": "2",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": "11:00",
+        "doctor": null,
+        "clarification": "Would you like Dr. Rao or Dr. Iyer?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Book tomorrow 11:30:45 Rao",
+    "expected_status": "asked",
+    "result": {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "What single appointment time do you mean, in HH:MM AM/PM format? Available options (IST): Tue 17 Nov at 11:30 with Dr. Rao; Tue 17 Nov at 12:00 with Dr. Rao; Tue 17 Nov at 11:00 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-17",
+          "time": "11:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "12:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "11:00",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "3",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": "11:30",
+        "doctor": "rao",
+        "clarification": "What single appointment time do you mean, in HH:MM AM/PM format?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Cancel tomorrow at noon",
+    "expected_status": "refused",
+    "result": {
+      "status": "refused",
+      "code": "no_owned_booking",
+      "reply": "I could not find a matching upcoming booking under your phone number.",
+      "booking": null,
+      "alternatives": [],
+      "message_id": "4",
+      "extraction": {
+        "intent": "cancel",
+        "date": "2026-11-17",
+        "time": "12:00",
+        "doctor": null,
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Please reschedule my appointment to tomorrow 11am Rao",
+    "expected_status": "asked",
+    "result": {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "Rescheduling is not supported yet; would you like to cancel your existing appointment first? Available options (IST): Tue 17 Nov at 11:00 with Dr. Rao; Tue 17 Nov at 11:30 with Dr. Rao; Tue 17 Nov at 10:30 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-17",
+          "time": "11:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "11:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "10:30",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "5",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": "11:00",
+        "doctor": "rao",
+        "clarification": "Rescheduling is not supported yet; would you like to cancel your existing appointment first?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Book tomorrow at 11.30am Rao",
+    "expected_status": "asked",
+    "result": {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "What single appointment time do you mean, in HH:MM AM/PM format? Available options (IST): Tue 17 Nov at 12:00 with Dr. Rao; Tue 17 Nov at 12:30 with Dr. Rao; Tue 17 Nov at 11:30 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-17",
+          "time": "12:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "12:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "11:30",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "6",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": null,
+        "doctor": "rao",
+        "clarification": "What single appointment time do you mean, in HH:MM AM/PM format?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Book Tuesday Wednesday 11am Rao",
+    "expected_status": "asked",
+    "result": {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "Which single calendar date do you mean? Available options (IST): Tue 17 Nov at 11:00 with Dr. Rao; Tue 17 Nov at 11:30 with Dr. Rao; Tue 17 Nov at 10:30 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-17",
+          "time": "11:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "11:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "10:30",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "7",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": "11:00",
+        "doctor": "rao",
+        "clarification": "Which single calendar date do you mean?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Book 21/11/27 at 10:30 Rao",
+    "expected_status": "asked",
+    "result": {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "What exact date do you mean, including the four-digit year? Available options (IST): Sat 21 Nov at 10:30 with Dr. Rao; Sat 21 Nov at 11:00 with Dr. Rao; Sat 21 Nov at 10:00 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-21",
+          "time": "10:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-21",
+          "time": "11:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-21",
+          "time": "10:00",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "8",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-21",
+        "time": "10:30",
+        "doctor": "rao",
+        "clarification": "What exact date do you mean, including the four-digit year?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  },
+  {
+    "text": "Book tomorrow at noon with Rao",
+    "expected_status": "booked",
+    "result": {
+      "status": "booked",
+      "code": "booked",
+      "reply": "Confirmed: Tue 17 Nov at 12:00 with Dr. Rao IST. Booking #1.",
+      "booking": {
+        "id": 1,
+        "phone": "+919800000001",
+        "doctor": "rao",
+        "date": "2026-11-17",
+        "time": "12:00"
+      },
+      "alternatives": [],
+      "message_id": "9",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": "12:00",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  }
+]

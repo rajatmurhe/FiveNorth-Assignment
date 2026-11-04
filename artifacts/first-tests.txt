@@ -1,0 +1,141 @@
+test_evaluator_catches_wrong_booking (tests.test_booking.EvaluationTests.test_evaluator_catches_wrong_booking) ... ok
+test_fifteen_messages_end_to_end (tests.test_booking.EvaluationTests.test_fifteen_messages_end_to_end) ... ok
+test_ambiguous_dates_and_conflicting_weekday (tests.test_booking.ExtractionTests.test_ambiguous_dates_and_conflicting_weekday) ... ok
+test_bad_model_outputs (tests.test_booking.ExtractionTests.test_bad_model_outputs) ... ok
+test_doctor_not_silently_replaced (tests.test_booking.ExtractionTests.test_doctor_not_silently_replaced) ... ok
+test_hinglish_and_hindi (tests.test_booking.ExtractionTests.test_hinglish_and_hindi) ... ok
+test_multiple_times_not_silently_selected (tests.test_booking.ExtractionTests.test_multiple_times_not_silently_selected) ... FAIL
+test_offer_slots_are_free_at_response_time (tests.test_booking.ExtractionTests.test_offer_slots_are_free_at_response_time) ... ok
+test_prompt_injection (tests.test_booking.ExtractionTests.test_prompt_injection) ... ok
+test_retry_recovers (tests.test_booking.ExtractionTests.test_retry_recovers) ... ok
+test_transient_failure_bounded (tests.test_booking.ExtractionTests.test_transient_failure_bounded) ... ok
+test_unknown_doctor (tests.test_booking.ExtractionTests.test_unknown_doctor) ... ok
+test_urgent_request_requires_confirmation (tests.test_booking.ExtractionTests.test_urgent_request_requires_confirmation) ... ok
+test_valid_model_output_cannot_override_closure (tests.test_booking.ExtractionTests.test_valid_model_output_cannot_override_closure) ... ok
+test_http_cancel_ownership (tests.test_booking.HTTPTests.test_http_cancel_ownership) ... ok
+test_http_validation_and_health (tests.test_booking.HTTPTests.test_http_validation_and_health) ... ok
+test_parallel_duplicate_messages (tests.test_booking.HTTPTests.test_parallel_duplicate_messages) ... ok
+test_parallel_http_booking (tests.test_booking.HTTPTests.test_parallel_http_booking) ... ERROR
+test_cancel_exact_owned_time (tests.test_booking.OwnershipTests.test_cancel_exact_owned_time) ... ok
+test_cancel_replay_does_not_cancel_second_booking (tests.test_booking.OwnershipTests.test_cancel_replay_does_not_cancel_second_booking) ... ok
+test_cancel_unknown_has_same_reply (tests.test_booking.OwnershipTests.test_cancel_unknown_has_same_reply) ... ok
+test_cannot_cancel_other_phone (tests.test_booking.OwnershipTests.test_cannot_cancel_other_phone) ... ok
+test_database_constraint_independent_of_service (tests.test_booking.OwnershipTests.test_database_constraint_independent_of_service) ... ok
+test_message_idempotency (tests.test_booking.OwnershipTests.test_message_idempotency) ... ok
+test_multiple_owned_requires_question (tests.test_booking.OwnershipTests.test_multiple_owned_requires_question) ... ok
+test_restart_persists (tests.test_booking.OwnershipTests.test_restart_persists) ... ok
+test_closed_and_sunday (tests.test_booking.ScheduleTests.test_closed_and_sunday) ... ok
+test_direct_validation (tests.test_booking.ScheduleTests.test_direct_validation) ... ok
+test_doctor_schedules (tests.test_booking.ScheduleTests.test_doctor_schedules) ... ok
+test_extreme_valid_date_does_not_crash (tests.test_booking.ScheduleTests.test_extreme_valid_date_does_not_crash) ... ERROR
+test_fixed_now (tests.test_booking.ScheduleTests.test_fixed_now) ... ok
+test_free_slots_exclude_booked_and_cancellation_restores (tests.test_booking.ScheduleTests.test_free_slots_exclude_booked_and_cancellation_restores) ... ok
+test_lunch_end_and_alignment (tests.test_booking.ScheduleTests.test_lunch_end_and_alignment) ... ok
+test_two_doctors_same_time_is_valid (tests.test_booking.ScheduleTests.test_two_doctors_same_time_is_valid) ... ok
+
+======================================================================
+ERROR: test_parallel_http_booking (tests.test_booking.HTTPTests.test_parallel_http_booking)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1286, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1332, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1281, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 1041, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 979, in send
+    self.connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py", line 945, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py", line 851, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py", line 836, in create_connection
+    sock.connect(sa)
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /tests/test_booking.py", line 241, in test_parallel_http_booking
+    results = list(pool.map(send, range(12)))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /tests/test_booking.py", line 239, in send
+    return call(self.base, '/bookings', dict(phone=f'+91980000{index:04}', date='2026-11-18', time='12:00', doctor='rao'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /scripts/evaluate.py", line 21, in call
+    with urlopen(req, timeout=15) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1377, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 54] Connection reset by peer>
+
+======================================================================
+ERROR: test_extreme_valid_date_does_not_crash (tests.test_booking.ScheduleTests.test_extreme_valid_date_does_not_crash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /tests/test_booking.py", line 76, in test_extreme_valid_date_does_not_crash
+    result = self.book(day='9999-12-31', clock='23:00')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /tests/test_booking.py", line 28, in book
+    return self.service.book_direct(dict(phone=phone, date=day, time=clock, doctor=doctor))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /booking/service.py", line 97, in book_direct
+    return self.book(db, phone, day, clock, doctor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /booking/service.py", line 77, in book
+    return self.response('refused', 'invalid_slot', 'That time is outside the clinic schedule, in the past, or not a 30-minute slot.', self.alternatives(db, day, clock, doctor))
+                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /booking/service.py", line 52, in alternatives
+    candidate = first + timedelta(days=offset)
+                ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+OverflowError: date value out of range
+
+======================================================================
+FAIL: test_multiple_times_not_silently_selected (tests.test_booking.ExtractionTests.test_multiple_times_not_silently_selected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/rajatmurhe/Desktop/Fivenorthlabs /tests/test_booking.py", line 202, in test_multiple_times_not_silently_selected
+    self.assertEqual(self.message(text, mid=f'multi{index}')['status'], 'asked')
+AssertionError: 'booked' != 'asked'
+- booked
++ asked
+
+
+----------------------------------------------------------------------
+Ran 34 tests in 3.384s
+
+FAILED (failures=1, errors=2)

@@ -1,0 +1,556 @@
+{
+  "mode": "rules (no LLM calls)",
+  "fixed_now": "2026-11-16T10:00:00+05:30",
+  "metrics": {
+    "wrong_bookings": 0,
+    "unnecessary_questions": 0,
+    "messages_handled_correctly": 15,
+    "total_messages": 15,
+    "race_passed": true,
+    "message_coverage_correct": true,
+    "persisted_state_correct": true,
+    "per_message": [
+      {
+        "id": "m01",
+        "correct": true,
+        "status": "booked",
+        "reason": "Tomorrow is 17 Nov; explicit doctor and time."
+      },
+      {
+        "id": "m02",
+        "correct": true,
+        "status": "booked",
+        "reason": "Treat the availability question as appointment intent; kal shaam means tomorrow evening."
+      },
+      {
+        "id": "m03",
+        "correct": true,
+        "status": "asked",
+        "reason": "Next Friday could be 20 or 27 Nov; 20 Nov is also closed. Clarify date first."
+      },
+      {
+        "id": "m04",
+        "correct": true,
+        "status": "booked",
+        "reason": "Only Dr. Iyer works Thursday at 15:00; infer from schedule, not current occupancy."
+      },
+      {
+        "id": "m05",
+        "correct": true,
+        "status": "refused",
+        "reason": "Dr. Iyer does not work Saturday. 12 means noon in clinic context. Do not substitute Rao."
+      },
+      {
+        "id": "m06",
+        "correct": true,
+        "status": "refused",
+        "reason": "19:45 is off the 30-minute grid and would end after closing."
+      },
+      {
+        "id": "m07",
+        "correct": true,
+        "status": "refused",
+        "reason": "02:00 is not a clinic slot; owner claims cannot change rules."
+      },
+      {
+        "id": "m08",
+        "correct": true,
+        "status": "refused",
+        "reason": "Today at 09:00 is before fixed now."
+      },
+      {
+        "id": "m09",
+        "correct": true,
+        "status": "booked",
+        "reason": "Race: exactly one of m09/m10 books; the other gets slot_taken."
+      },
+      {
+        "id": "m10",
+        "correct": true,
+        "status": "refused",
+        "reason": "Same slot as m09. Either winner is correct."
+      },
+      {
+        "id": "m11",
+        "correct": true,
+        "status": "cancelled",
+        "reason": "Sender owns exactly one upcoming booking: m01."
+      },
+      {
+        "id": "m12",
+        "correct": true,
+        "status": "refused",
+        "reason": "Sender does not own m02. Do not reveal another patient's booking."
+      },
+      {
+        "id": "m13",
+        "correct": true,
+        "status": "booked",
+        "reason": "21/11 is unambiguous DD/MM; year comes from fixed now."
+      },
+      {
+        "id": "m14",
+        "correct": true,
+        "status": "asked",
+        "reason": "11/12 could mean 11 Dec or 12 Nov. Ask rather than choose a locale silently."
+      },
+      {
+        "id": "m15",
+        "correct": true,
+        "status": "asked",
+        "reason": "Offer earliest real slot and ask confirmation; do not make an immediate booking without a specified date/time."
+      }
+    ]
+  },
+  "results": [
+    {
+      "status": "booked",
+      "code": "booked",
+      "reply": "Confirmed: Tue 17 Nov at 11:00 with Dr. Rao IST. Booking #1.",
+      "booking": {
+        "id": 1,
+        "phone": "+919800000001",
+        "doctor": "rao",
+        "date": "2026-11-17",
+        "time": "11:00"
+      },
+      "alternatives": [],
+      "message_id": "m01",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": "11:00",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "booked",
+      "code": "booked",
+      "reply": "Confirmed: Tue 17 Nov at 18:00 with Dr. Rao IST. Booking #2.",
+      "booking": {
+        "id": 2,
+        "phone": "+919800000002",
+        "doctor": "rao",
+        "date": "2026-11-17",
+        "time": "18:00"
+      },
+      "alternatives": [],
+      "message_id": "m02",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-17",
+        "time": "18:00",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "The clinic is closed on 20 November. Do you mean 20 November or 27 November? Available options (IST): Thu 19 Nov at 19:30 with Dr. Rao; Thu 19 Nov at 19:00 with Dr. Rao; Thu 19 Nov at 18:30 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-19",
+          "time": "19:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-19",
+          "time": "19:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-19",
+          "time": "18:30",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "m03",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-20",
+        "time": null,
+        "doctor": null,
+        "clarification": "Do you mean 20 November or 27 November?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "booked",
+      "code": "booked",
+      "reply": "Confirmed: Thu 19 Nov at 15:00 with Dr. Iyer IST. Booking #3.",
+      "booking": {
+        "id": 3,
+        "phone": "+919800000004",
+        "doctor": "iyer",
+        "date": "2026-11-19",
+        "time": "15:00"
+      },
+      "alternatives": [],
+      "message_id": "m04",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-19",
+        "time": "15:00",
+        "doctor": null,
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "refused",
+      "code": "invalid_slot",
+      "reply": "That request does not fit an available working time or is in the past. Available options (IST): Thu 19 Nov at 16:30 with Dr. Iyer; Thu 19 Nov at 16:00 with Dr. Iyer; Thu 19 Nov at 15:30 with Dr. Iyer. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-19",
+          "time": "16:30",
+          "doctor": "iyer"
+        },
+        {
+          "date": "2026-11-19",
+          "time": "16:00",
+          "doctor": "iyer"
+        },
+        {
+          "date": "2026-11-19",
+          "time": "15:30",
+          "doctor": "iyer"
+        }
+      ],
+      "message_id": "m05",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-21",
+        "time": "12:00",
+        "doctor": "iyer",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "refused",
+      "code": "invalid_slot",
+      "reply": "That request does not fit an available working time or is in the past. Available options (IST): Wed 18 Nov at 19:30 with Dr. Rao; Wed 18 Nov at 19:00 with Dr. Rao; Wed 18 Nov at 18:30 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-18",
+          "time": "19:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-18",
+          "time": "19:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-18",
+          "time": "18:30",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "m06",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-18",
+        "time": "19:45",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "refused",
+      "code": "invalid_slot",
+      "reply": "That request does not fit an available working time or is in the past. Available options (IST): Mon 16 Nov at 10:00 with Dr. Rao; Mon 16 Nov at 10:30 with Dr. Rao; Mon 16 Nov at 11:00 with Dr. Iyer. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-16",
+          "time": "10:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-16",
+          "time": "10:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-16",
+          "time": "11:00",
+          "doctor": "iyer"
+        }
+      ],
+      "message_id": "m07",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-16",
+        "time": "02:00",
+        "doctor": null,
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "refused",
+      "code": "invalid_slot",
+      "reply": "That request does not fit an available working time or is in the past. Available options (IST): Mon 16 Nov at 10:00 with Dr. Rao; Mon 16 Nov at 10:30 with Dr. Rao; Mon 16 Nov at 11:00 with Dr. Iyer. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-16",
+          "time": "10:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-16",
+          "time": "10:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-16",
+          "time": "11:00",
+          "doctor": "iyer"
+        }
+      ],
+      "message_id": "m08",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-16",
+        "time": "09:00",
+        "doctor": null,
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "booked",
+      "code": "booked",
+      "reply": "Confirmed: Wed 18 Nov at 12:00 with Dr. Rao IST. Booking #4.",
+      "booking": {
+        "id": 4,
+        "phone": "+919800000009",
+        "doctor": "rao",
+        "date": "2026-11-18",
+        "time": "12:00"
+      },
+      "alternatives": [],
+      "message_id": "m09",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-18",
+        "time": "12:00",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "refused",
+      "code": "slot_taken",
+      "reply": "That slot has just been booked. Available options (IST): Wed 18 Nov at 12:30 with Dr. Rao; Wed 18 Nov at 11:30 with Dr. Rao; Wed 18 Nov at 11:00 with Dr. Rao. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-18",
+          "time": "12:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-18",
+          "time": "11:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-18",
+          "time": "11:00",
+          "doctor": "rao"
+        }
+      ],
+      "message_id": "m10",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-18",
+        "time": "12:00",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "cancelled",
+      "code": "cancelled",
+      "reply": "Cancelled your booking #1: Tue 17 Nov at 11:00 with Dr. Rao IST.",
+      "booking": {
+        "id": 1,
+        "phone": "+919800000001",
+        "doctor": "rao",
+        "date": "2026-11-17",
+        "time": "11:00"
+      },
+      "alternatives": [],
+      "message_id": "m11",
+      "extraction": {
+        "intent": "cancel",
+        "date": null,
+        "time": null,
+        "doctor": null,
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "refused",
+      "code": "no_owned_booking",
+      "reply": "I could not find a matching upcoming booking under your phone number.",
+      "booking": null,
+      "alternatives": [],
+      "message_id": "m12",
+      "extraction": {
+        "intent": "cancel",
+        "date": "2026-11-17",
+        "time": "18:00",
+        "doctor": null,
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "booked",
+      "code": "booked",
+      "reply": "Confirmed: Sat 21 Nov at 10:30 with Dr. Rao IST. Booking #5.",
+      "booking": {
+        "id": 5,
+        "phone": "+919800000013",
+        "doctor": "rao",
+        "date": "2026-11-21",
+        "time": "10:30"
+      },
+      "alternatives": [],
+      "message_id": "m13",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-11-21",
+        "time": "10:30",
+        "doctor": "rao",
+        "clarification": null
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "Do you mean 11 December or 12 November? Available options (IST): Fri 11 Dec at 17:00 with Dr. Rao; Fri 11 Dec at 17:30 with Dr. Rao; Fri 11 Dec at 16:30 with Dr. Iyer. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-12-11",
+          "time": "17:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-12-11",
+          "time": "17:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-12-11",
+          "time": "16:30",
+          "doctor": "iyer"
+        }
+      ],
+      "message_id": "m14",
+      "extraction": {
+        "intent": "book",
+        "date": "2026-12-11",
+        "time": "17:00",
+        "doctor": null,
+        "clarification": "Do you mean 11 December or 12 November?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    },
+    {
+      "status": "asked",
+      "code": "clarification",
+      "reply": "Would you like the earliest available appointment? Available options (IST): Mon 16 Nov at 10:00 with Dr. Rao; Mon 16 Nov at 10:30 with Dr. Rao; Mon 16 Nov at 11:00 with Dr. Iyer. Please confirm one before we book.",
+      "booking": null,
+      "alternatives": [
+        {
+          "date": "2026-11-16",
+          "time": "10:00",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-16",
+          "time": "10:30",
+          "doctor": "rao"
+        },
+        {
+          "date": "2026-11-16",
+          "time": "11:00",
+          "doctor": "iyer"
+        }
+      ],
+      "message_id": "m15",
+      "extraction": {
+        "intent": "book",
+        "date": null,
+        "time": null,
+        "doctor": null,
+        "clarification": "Would you like the earliest available appointment?"
+      },
+      "attempts": 1,
+      "provider": "rules"
+    }
+  ],
+  "active_appointments": [
+    {
+      "id": 3,
+      "phone": "+919800000004",
+      "doctor": "iyer",
+      "date": "2026-11-19",
+      "time": "15:00"
+    },
+    {
+      "id": 2,
+      "phone": "+919800000002",
+      "doctor": "rao",
+      "date": "2026-11-17",
+      "time": "18:00"
+    },
+    {
+      "id": 4,
+      "phone": "+919800000009",
+      "doctor": "rao",
+      "date": "2026-11-18",
+      "time": "12:00"
+    },
+    {
+      "id": 5,
+      "phone": "+919800000013",
+      "doctor": "rao",
+      "date": "2026-11-21",
+      "time": "10:30"
+    }
+  ]
+}

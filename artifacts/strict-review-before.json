@@ -1,0 +1,170 @@
+[
+  {
+    "text": "Book day after tomorrow at 11am with Rao",
+    "status": "booked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-17",
+      "time": "11:00",
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-17",
+      "time": "11:00"
+    }
+  },
+  {
+    "text": "Book next week Wednesday 11am Rao",
+    "status": "booked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-18",
+      "time": "11:00",
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-18",
+      "time": "11:00"
+    }
+  },
+  {
+    "text": "Book tomorrow 11am Dr Smith; Rao is unavailable",
+    "status": "booked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-17",
+      "time": "11:00",
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-17",
+      "time": "11:00"
+    }
+  },
+  {
+    "text": "Book tomorrow 11:30:45 Rao",
+    "status": "booked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-17",
+      "time": "11:30",
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-17",
+      "time": "11:30"
+    }
+  },
+  {
+    "text": "Cancel tomorrow at noon",
+    "status": "cancelled",
+    "extraction": {
+      "intent": "cancel",
+      "date": "2026-11-17",
+      "time": null,
+      "doctor": null,
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-17",
+      "time": "11:00"
+    }
+  },
+  {
+    "text": "Please reschedule my appointment to tomorrow 11am Rao",
+    "status": "booked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-17",
+      "time": "11:00",
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-17",
+      "time": "11:00"
+    }
+  },
+  {
+    "text": "Book tomorrow at 11.30am Rao",
+    "status": "asked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-17",
+      "time": null,
+      "doctor": "rao",
+      "clarification": "What valid appointment time would you like?"
+    },
+    "booking": null
+  },
+  {
+    "text": "Book Tuesday Wednesday 11am Rao",
+    "status": "booked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-17",
+      "time": "11:00",
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-17",
+      "time": "11:00"
+    }
+  },
+  {
+    "text": "Book 21/11/27 at 10:30 Rao",
+    "status": "booked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-21",
+      "time": "10:30",
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": {
+      "id": 1,
+      "phone": "+919800000001",
+      "doctor": "rao",
+      "date": "2026-11-21",
+      "time": "10:30"
+    }
+  },
+  {
+    "text": "Book tomorrow at noon with Rao",
+    "status": "asked",
+    "extraction": {
+      "intent": "book",
+      "date": "2026-11-17",
+      "time": null,
+      "doctor": "rao",
+      "clarification": null
+    },
+    "booking": null
+  }
+]
